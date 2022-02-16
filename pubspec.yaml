@@ -24,6 +24,14 @@ dependencies:
 
   # Bloc - state management
   flutter_bloc: ^8.0.1
+  # Network status
+  connectivity_plus: ^2.2.1
+  # RSS parser
+  webfeed: ^0.7.0
+  http: ^0.13.4
+  # Image with shadow
+  drop_shadow_image: ^0.9.1
+
 
   flutter:
     sdk: flutter
@@ -31,9 +39,11 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
 
 dev_dependencies:
+  lint: ^1.8.2
+
   flutter_test:
     sdk: flutter
 
@@ -49,8 +59,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
