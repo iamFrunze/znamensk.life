@@ -4,5 +4,3 @@ import 'package:znamensk/presentation/application.dart';
 void main() {
   runApp(Application());
 }
-
-
