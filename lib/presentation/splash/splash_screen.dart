@@ -1,6 +1,8 @@
 import 'package:drop_shadow_image/drop_shadow_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:znamensk/helpers/dialog_error.dart';
+import 'package:znamensk/presentation/home/home_screen.dart';
 import 'package:znamensk/presentation/splash/bloc/splash_bloc.dart';
 import 'package:znamensk/resources/images/apllication_images.dart';
 
@@ -25,29 +27,45 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<SplashBloc>(context).add(SplashLoadDataEvent());
+  }
+
+  @override
   Widget build(BuildContext context) {
     final splashBloc = BlocProvider.of<SplashBloc>(context);
-    splashBloc.add(SplashLoadDataEvent());
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: BlocBuilder<SplashBloc, SplashState>(
-          builder: (context, state) {
+        child: BlocListener(
+          bloc: BlocProvider.of<SplashBloc>(context),
+          listener: (context, state) {
             if (state is SplashLoadSuccessState) {
-              // TODO navigate with success data
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const HomeScreen(),
+                ),
+              );
             }
             if (state is SplashLoadErrorState) {
-              // TODO Navigate with error data
+              showError(context, "Ошибка", state.error, "Продолжить");
             }
-            return DropShadowImage(
-              image:
-                  Image.asset(ApplicationImages.shared.logoWithoutBackground),
-              borderRadius: 20,
-              blurRadius: 20,
-              offset: const Offset(5, 5),
-              scale: 1.05,
-            );
           },
+          child: BlocBuilder<SplashBloc, SplashState>(
+            builder: (context, state) {
+              return DropShadowImage(
+                image: Image.asset(
+                  ApplicationImages.shared.logoWithoutBackground,
+                ),
+                borderRadius: 20,
+                blurRadius: 20,
+                offset: const Offset(5, 5),
+                scale: 1.05,
+              );
+            },
+          ),
         ),
       ),
     );

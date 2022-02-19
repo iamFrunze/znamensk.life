@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_const
-
 import 'package:flutter/material.dart';
 import 'package:znamensk/presentation/home/home_screen.dart';
 import 'package:znamensk/presentation/splash/splash_screen.dart';
@@ -11,7 +9,7 @@ class Application extends StatelessWidget {
     return MaterialApp(
       theme: CustomTheme.shared.lightTheme,
       darkTheme: CustomTheme.shared.darkTheme,
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

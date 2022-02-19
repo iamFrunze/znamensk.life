@@ -15,7 +15,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   Future<void> _loadData(
     SplashLoadDataEvent event,
-    Emitter<SplashState> emiter,
+    Emitter<SplashState> emit,
   ) async {
     final connectivityResult = await Connectivity().checkConnectivity();
     final client = http.Client();
@@ -30,7 +30,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       final response =
           await client.get(Uri.parse(ApplicationStrings.shared.RSSFeed));
       final feed = RssFeed.parse(response.body).items;
-      final listOfItems = List<RssFeedModel>.empty();
+      final listOfItems = <RssFeedModel>[];
       feed?.forEach((element) {
         final model = RssFeedModel(
           title: element.title,
@@ -41,7 +41,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         );
         listOfItems.add(model);
       });
-      emit(SplashLoadSuccessState(listOfItems));
+      emit(SplashLoadSuccessState());
     } catch (e) {
       print("Parse error::: $e");
       // TODO add string resource for none network

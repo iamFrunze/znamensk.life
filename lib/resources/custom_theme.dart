@@ -5,21 +5,20 @@ class CustomTheme {
 
   ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      elevation: 10,
+      selectedIconTheme: IconThemeData(color: Colors.blue),
+      unselectedIconTheme: IconThemeData(color: Colors.grey),
+    ),
     bottomAppBarColor: Colors.white,
     colorScheme: const ColorScheme.light(),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.blue,
-    ),
   );
 
   ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
-    bottomNavigationBarTheme: BottomNavigationBarTheme(
-      data: ,
-    ),
-    colorScheme: const ColorScheme.dark(),
-    appBarTheme: const AppBarTheme(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.black,
     ),
+    colorScheme: const ColorScheme.dark(),
   );
 }

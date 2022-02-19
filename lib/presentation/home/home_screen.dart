@@ -1,50 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:znamensk/resources/images/home_images.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  Widget build(BuildContext context) {
+    return const HomePage();
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: body(selectedIndex),
+      body: SafeArea(
+        child: body(selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         currentIndex: selectedIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.feed_outlined),
             label: 'Новости',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              HomeImages.shared.vk,
-              width: 25,
-            ),
+            icon: Icon(Icons.public),
             label: 'ВК',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              HomeImages.shared.social,
-              width: 25,
-            ),
+            icon: Icon(Icons.event),
+            label: "Афиша",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.help_outline),
             label: 'Инфраструктура',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              HomeImages.shared.user,
-              width: 25,
-            ),
+            icon: Icon(Icons.person_rounded),
             label: 'ЛК',
           )
         ],
