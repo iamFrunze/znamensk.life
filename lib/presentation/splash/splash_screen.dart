@@ -5,6 +5,7 @@ import 'package:znamensk/helpers/dialog_error.dart';
 import 'package:znamensk/presentation/home/home_screen.dart';
 import 'package:znamensk/presentation/splash/bloc/splash_bloc.dart';
 import 'package:znamensk/resources/images/apllication_images.dart';
+import 'package:znamensk/resources/strings/splash_strings.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -50,7 +51,12 @@ class _SplashViewState extends State<SplashView> {
               );
             }
             if (state is SplashLoadErrorState) {
-              showError(context, "Ошибка", state.error, "Продолжить");
+              showError(
+                context,
+                SplashStrings.shared.title(state.code),
+                state.error,
+                SplashStrings.shared.allow,
+              );
             }
           },
           child: BlocBuilder<SplashBloc, SplashState>(

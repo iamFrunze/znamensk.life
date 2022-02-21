@@ -4,8 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:webfeed/webfeed.dart';
 import 'package:znamensk/data/models/rss_feed_model.dart';
 import 'package:znamensk/resources/strings/application_strings.dart';
+import 'package:znamensk/resources/strings/splash_strings.dart';
 
 part 'splash_event.dart';
+
 part 'splash_state.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
@@ -22,8 +24,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
     if (connectivityResult == ConnectivityResult.none) {
       print("Connectivity error");
-      // TODO add string resource for none network
-      emit(SplashLoadErrorState("Connectivity error"));
+      emit(SplashLoadErrorState(1, SplashStrings.shared.connectivityError));
     }
 
     try {
@@ -44,8 +45,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       emit(SplashLoadSuccessState());
     } catch (e) {
       print("Parse error::: $e");
-      // TODO add string resource for none network
-      emit(SplashLoadErrorState("Parse error"));
+      emit(SplashLoadErrorState(2, SplashStrings.shared.parseError));
     }
   }
 }
